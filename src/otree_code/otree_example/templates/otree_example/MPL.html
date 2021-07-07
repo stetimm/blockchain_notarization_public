@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Here comes the MPL
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Please answer the following questions.
+    </p>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr class="header">
+                    <th style="text-align: right;">Option A</th>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: left;">Option B</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for payment,form_field in choices %}
+                    <tr>
+                        <!-- Charity -->
+                        <td style="text-align: right;">
+                            {{payoff_charity}}$ to Charity
+                        </td>
+
+                        <!-- radio select form fields -->
+                        <td style="text-align: center;">
+                            <input type="radio" name="{{ form_field }}" value="A" required style="margin: 10px;">
+                            <input type="radio" name="{{ form_field }}" value="B" required style="margin: 10px;">
+                        </td>
+
+                        <!-- Self -->
+                        <td style="text-align: left;">
+                            {{payment}}$ to yourself
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% next_button %}
+{% endblock %}
+
+
